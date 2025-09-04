@@ -36,6 +36,14 @@ upload your own page as "index.php" or "index.html".
             margin-left: 0px;
             margin-top: 0px;
         }
+        #search {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start
+        }
+        input {
+            margin-right: 3px;
+        }
         h2 {
             margin-top: 2px;
             margin-bottom: 2px
@@ -82,7 +90,7 @@ upload your own page as "index.php" or "index.html".
                     <b>Identity:</b>
                     <ul>
                         <li>Mathe-<br>matician</li>
-                        <li>Program<br>mer</li>
+                        <li>Program<br>-mer</li>
                         <li>Power<br>-User<br>Linux<br>(Debian)</li>
                     </ul>
                 </div>
@@ -118,6 +126,10 @@ upload your own page as "index.php" or "index.html".
                 <table>
                     <tr>
                         <td>
+                            <div id="search">
+                                <input type="text" id="search">
+                                <button type="submit">search</button>
+                            </div>
                             <div>
                                 <div id="postingan">
                                     <h5><u>Upld</u>01/09/2025<u>Ed</u>03/09/2025</h5>
