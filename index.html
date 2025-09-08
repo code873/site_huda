@@ -123,54 +123,74 @@ upload your own page as "index.php" or "index.html".
                         <li>Debian12<br>Bookworm<br>(now)</li>
                     </ul>
                 </div>
+                <div>
+                    <b>Posts:</b>
+                    <ul>
+                     
+                    </ul>
+                </div>
             </td>
-            <td valign="top">
-                <table>
-                    <tr>
-                        <td>
-                            <div id="search">
-                                <input type="text" id="search">
-                                <button type="submit">search</button>
-                            </div>
-                            <hr style="border: 1px solid black">
-                            <div>
-                                <div id="postingan">
-                                    <h5><u>Upld</u>01/09/2025<u>Ed</u>03/09/2025</h5>
-                                </div>
-                                <h3><u>Preface</u>: The Background of Why Here I Am Now</h3>
-                                <h5>Post+1</h5>
-                            </div>
-                            <article>
-                                <p id="post1"></p>
-                                <script>
-                                   fetch('post1.txt')
-                                      .then(response => response.text())
-                                      .then(data => {
-                                          document.getElementById('post1').innerHTML = data;
-                                      })
-                                      .catch(error => console.error('Gagal load data', error));
-                                </script>
-                            </article>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <hr style="border: 1px solid black">
-                            <div>
-                                <div id="postingan">
-                                    <h5><u>Upld</u>04/09/2025<u>Ed</u>04/09/2025</h5>
-                                </div>
-                                <h3><u>Eps.1</u>: Leaving Windows & Free-Diving Into Linux</h3>
-                                <h5>Post+2</h5>
-                            </div>
-                            <article>
-                                <p>
-                                    
-                                </p>
-                            </article>
-                        </td>
-                    </tr>
-                </table>
+            <td valign="top" width="70%">
+                <div id="postContainer">
+                  <!-- isi default: list postingan -->
+                  <div id="postList">
+                     <p>*berisi preface sedikit aja</p>
+                     <ul>
+                        <li><a href="#" data-post="post1">Post 1</a></li>
+                        <li><a href="#" data-post="post2">Post 2</a></li>
+                     </ul>
+                  </div>
+                  <!-- konten postingan (hidden awalnya) -->
+                  <div id="postContent" sytle="display:none;">
+                     <div id="contentArea"></div>
+                     <button id="backBTN" style="margin-top:10px; display:none;">Back</button>
+                  </div>
+
+                  <script
+
+                    const postListDiv = document.getElementById("postList");
+                    const postContentDiv = document.getElementById("postContent");
+                    const contentArea = document.getElementById("contentArea");
+                    const backBTN = document.getElementById("backBTN");
+
+                    // Event klik link postingan
+                    postListDiv.querySelectorAll("a").forEach(link => {
+                        link.addEventListener("click", function(e){
+                            e.preventDefault();
+
+                            const fileName = this.getAttribute("/home/huda12/Desktop/set_up.py"); // misal "post1.txt"
+
+                            fetch(fileName)
+                                .then(response => {
+                                    if (!response.ok) throw new Error("File tidak ditemukan");
+                                    return response.text();
+                                })
+                                .then(text => {
+                                    contentArea.innerHTML = text;
+
+                                    // tampilkan konten & back button
+                                    postContentDiv.style.display = "block";
+                                    backBTN.style.display = "inline-block";
+                                    postListDiv.style.display = "none";
+                                })
+                                .catch(err => {
+                                    postListDiv.style.display = "none";
+                                    postContentDiv.style.display = "block";
+                                    backBTN.style.display = "inline-block";
+                                    contentArea.innerHTML = `<p>Error: ${err.message}</p>`;
+                                });
+                            });
+                        });
+
+                        // Tombol back
+                        backBtn.addEventListener("click", function(){
+                        postContentDiv.style.display = "none";
+                        postListDiv.style.display = "block";
+                        backBTN.style.display = "none";
+                    });
+                  </script>
+
+               </div>
             </td>
         </tr>
 
