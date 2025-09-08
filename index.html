@@ -136,7 +136,7 @@ upload your own page as "index.php" or "index.html".
                   <div id="postList">
                      <p>*berisi preface sedikit aja</p>
                      <ul>
-                        <li><a href="#" data-post="post1">Post 1</a></li>
+                        <li><a href="#" data-post="post1.txt">Post 1</a></li>
                         <li><a href="#" data-post="post2">Post 2</a></li>
                      </ul>
                   </div>
@@ -158,7 +158,7 @@ upload your own page as "index.php" or "index.html".
                         link.addEventListener("click", function(e){
                             e.preventDefault();
 
-                            const fileName = this.getAttribute("post1.txt"); // misal "post1.txt"
+                            const fileName = this.getAttribute("data-post"); // misal "post1.txt"
 
                             fetch(fileName)
                                 .then(response => {
